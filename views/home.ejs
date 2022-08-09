@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/solid.min.css">
+    <script src="https://kit.fontawesome.com/9bdb983b31.js" crossorigin="anonymous"></script>
+
+    <title>
+        <%= title %> 
+    </title>
+    <style>
+        body{
+            background-color: rgb(39, 96, 96);
+            margin: 0;
+            padding: 0;
+        }
+        h1{
+            color: rgb(16, 15, 15);
+            text-align: center;
+        }
+        p,a{
+            color: white;
+        }
+        .doCenter{
+            text-align: center;
+        }
+        .content{
+            margin-top: 60px;
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>&nbsp;&nbsp;&nbsp;Contact List</h1>
+    <div class="doCenter">
+        <ul>
+            <% for(let i of contact_list){ %>
+                <div>
+                    <!-- <li> -->
+                        <p><%= i.name %> </p>
+                        <p><%= i.phone %> </p>
+                    <!-- </li> -->
+                </div>
+
+                <div class="delete-button">
+                        
+                    <a href="delete_contact/?id=<%=i._id%> ">
+                        <i class="fas fa-trash"></i>
+                        <!-- Delete -->
+                    </a>
+                    <br>
+                    <br>
+                    <form action="/update_contact/?id=<%=i._id%>" method="post">
+                        <input type="text" name="name" placeholder="Name" autocomplete="off">
+                        <input type="number" name="phone" placeholder="Mobile" autocomplete="off">
+                
+                        <button type="submit">Update Contact</button>
+                    </form>
+
+                </div>
+            <% } %> 
+        </ul>
+    </div>
+    
+    <br>
+    <div class="doCenter content">
+        <form action="/create_contact" method="post">
+            <input type="text" name="name" placeholder="Enter Your Name" autocomplete="off">
+            <input type="number" name="phone" placeholder="Enter Your Mobile" autocomplete="off">
+    
+            <button type="submit">Add Contact</button>
+        </form>
+    </div>
+</body>
+</html>
